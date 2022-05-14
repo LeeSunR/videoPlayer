@@ -41,25 +41,6 @@ android {
     dataBinding {
         enabled = true
     }
-    flavorDimensions "default"
-    productFlavors {
-        Service_Remote_ {
-            applicationId PACKAGE_NAME
-            buildConfigField "String", "BASE_URL", "\"https://api.umaru.kr/\""
-        }
-        Service_Local_ {
-            applicationId PACKAGE_NAME
-            buildConfigField "String", "BASE_URL", "\"https://local.umaru.kr/\""
-        }
-        Dev_Remote_ {
-            applicationId PACKAGE_NAME+".dev"
-            buildConfigField "String", "BASE_URL", "\"https://api.umaru.kr/\""
-        }
-        Dev_Local_ {
-            applicationId PACKAGE_NAME+".dev"
-            buildConfigField "String", "BASE_URL", "\"https://local.umaru.kr/\""
-        }
-    }
 
 }
 
