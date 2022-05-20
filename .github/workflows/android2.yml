@@ -10,7 +10,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+      
     steps:
     
       - name: Slack Notification Start
@@ -40,10 +44,6 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
-        env:
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          KEY_STORE: ${{ secrets.KEY_STORE }}
-          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           
       - name: Slack Notification Finish With Success
         uses: rtCamp/action-slack-notify@v2
