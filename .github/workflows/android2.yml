@@ -17,7 +17,7 @@ jobs:
       
     steps:
       - name: print
-        run: echp "$KEY_PASSWORD $KEY_ALIAS $KEY_STORE_PASSWORD"
+        run: echo "$KEY_PASSWORD $KEY_ALIAS $KEY_STORE_PASSWORD"
     
       - name: Slack Notification Start
         uses: rtCamp/action-slack-notify@v2
