@@ -32,7 +32,10 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: gradle
-
+          
+      - name: Create Release KeyStore File
+        run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > keystore.jks
+  
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
