@@ -21,7 +21,7 @@ jobs:
         SLACK_USERNAME: "ssm-mobile-builder-bot"
         SLACK_CHANNEL: "#notification-android"
         SLACK_COLOR: "#CCCCCC"
-        SLACK_MESSAGE: "commit : $"
+        SLACK_MESSAGE: "commit : 41424"
         SLACK_WEBHOOK: $
         
     - uses: actions/checkout@v3
