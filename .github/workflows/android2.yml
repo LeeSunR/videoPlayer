@@ -56,6 +56,7 @@ jobs:
           packageName: kr.umaru.videoplayer
           releaseFiles: app/build/outputs/bundle/DevRelease/*.aab
           track: internal
+          status: completed
           inAppUpdatePriority: 2
           userFraction: 0.33
           
