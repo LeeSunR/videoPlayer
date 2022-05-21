@@ -40,7 +40,7 @@ jobs:
         uses: timheuer/base64-to-file@v1
         with:
           fileName: 'keystore.jks'
-          encodedString: ${{ secrets.KEYSTORE }}
+          encodedString: ${{ secrets.KEY_STORE_BASE64 }}
   
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
