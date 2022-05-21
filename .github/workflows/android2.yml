@@ -33,9 +33,9 @@ jobs:
           distribution: 'temurin'
           cache: gradle
           
-      - name: Decode Keystore
-        run: echo ${{ secrets.KEY_STORE_BASE64 }} | base64 -d > keystore.jks
-          echo keystore.jks
+#       - name: Decode Keystore
+#         run: echo ${{ secrets.KEY_STORE_BASE64 }} | base64 -d > keystore.jks
+#           echo keystore.jks
         
       - name: Decode Keystore2
         run: echo $KEY_STORE_BASE64 | base64 -d > keystore2.jks
