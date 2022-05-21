@@ -40,7 +40,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew app:bundleRelease
+        run: ./gradlew app:bundleDev
         env:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
@@ -53,8 +53,8 @@ jobs:
           packageName: kr.umaru.videoplayer
           releaseFiles: app/build/outputs/bundle/release/*.aab
           track: internal
-          inAppUpdatePriority: 0
-          userFraction: 1.0
+          inAppUpdatePriority: 2
+          userFraction: 0.33
           
       - name: Slack Notification Finish With Success
         uses: rtCamp/action-slack-notify@v2
