@@ -10,10 +10,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-      KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
       
     steps:
       - name: print
@@ -39,13 +35,21 @@ jobs:
           distribution: 'temurin'
           cache: gradle
           
-      - name: Create Release KeyStore File
-        run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > keystore.jks
+      - name: Decode Keystore
+        id: decode_keystore
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'keystore.jks'
+          encodedString: ${{ secrets.KEYSTORE }}
   
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew bundleDev --stacktrace
+        run: ./gradlew app:bundleRelease
+        env:
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           
       - name: Slack Notification Finish With Success
         uses: rtCamp/action-slack-notify@v2
