@@ -49,7 +49,7 @@ jobs:
       - name: Deploying app at play console
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           packageName: kr.umaru.videoplayer
           releaseFiles: app/build/outputs/bundle/DevRelease/*.aab
           track: internal
