@@ -46,10 +46,13 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
 
+      - name: Create service_account.json FROM secrets.SERVICE_ACCOUNT_JSON
+        run: echo '${{ secrets.SERVICE_ACCOUNT_KEY }}' > service_account.json
+
       - name: Deploying app at play console
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          serviceAccountJson: service_account.json
           packageName: kr.umaru.videoplayer
           releaseFiles: app/build/outputs/bundle/DevRelease/*.aab
           track: internal
