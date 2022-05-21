@@ -8,7 +8,7 @@ plugins {
 
 project.ext {
     VERSION_CODE = 2
-    VERSION_NAME = "1.9.3"
+    VERSION_NAME = "1.0"
     PACKAGE_NAME = "kr.umaru.videoplayer"
 }
 
@@ -28,8 +28,8 @@ android {
         applicationId PACKAGE_NAME
         minSdk 23
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
