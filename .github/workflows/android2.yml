@@ -54,7 +54,7 @@ jobs:
           releaseFiles: app/build/outputs/bundle/release/*.aab
           track: internal
           inAppUpdatePriority: 0
-          userFraction: 1
+          userFraction: 1.0
           
       - name: Slack Notification Finish With Success
         uses: rtCamp/action-slack-notify@v2
