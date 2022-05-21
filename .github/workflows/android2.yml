@@ -13,7 +13,7 @@ jobs:
       
     steps:
         - name: test
-          run: exho "${{github.event}}"
+          run: echo "${{github.event}}"
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
 #         if: always()
