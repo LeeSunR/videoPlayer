@@ -34,7 +34,7 @@ jobs:
           cache: gradle
           
       - name: Decode Keystore
-        run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > keystore.jks
+        run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > app/keystore.jks
   
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
