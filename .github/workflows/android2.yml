@@ -58,7 +58,7 @@ jobs:
           track: internal
           status: completed
           inAppUpdatePriority: 2
-          userFraction: 0.33
+#           userFraction: 0.33
           
       - name: Slack Notification Finish With Success
         uses: rtCamp/action-slack-notify@v2
