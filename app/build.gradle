@@ -7,8 +7,8 @@ plugins {
 }
 
 project.ext {
-    VERSION_CODE = 2
-    VERSION_NAME = "1.0"
+    VERSION_CODE = 3
+    VERSION_NAME = "1.1"
     PACKAGE_NAME = "kr.umaru.videoplayer"
 }
 
