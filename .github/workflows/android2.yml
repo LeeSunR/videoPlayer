@@ -17,14 +17,14 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         if: always()
         env:
-          SLACK_ICON_EMOJI: ":ssm:"
-          SLACK_TITLE: ":android: 빌드 시작 / 버전 : $($) / 브랜5치 : $"
-          SLACK_USERNAME: "ssm-mobile-builder-bot"
+          SLACK_TITLE: ":computer: 빌드 시작 / 버전 : $($) / 브랜5치 : $"
+          SLACK_MESSAGE: "commit : 41424"  
+          SLACK_USERNAME: "Adnroid Github Action"
           SLACK_CHANNEL: "#notification-android"
           SLACK_COLOR: "#CCCCCC"
-          SLACK_MESSAGE: "commit : 41424"  
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_FOOTER: ""
+          MSG_MINIMAL: ref,actions url
           
 #       - uses: actions/checkout@v3
 #       - name: set up JDK 11
