@@ -14,6 +14,16 @@ jobs:
     steps:
         - name: test
           run: echo "${{github.event}}"
+          
+        - name: Deploy Stage
+          uses: fjogeleit/http-request-action@v1
+          with:
+            url: 'https://slack.com/api/chat.postMessage'
+            method: 'POST'
+            bearerToken: 'xoxb-3550455973958-3550540394630-eYLEHUWxyd58ccCjRx4OsOSn'
+            channel: 'C03FYEWR00P'
+            attachments: '[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: AAAAndroid Test App","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"Build with Gradle... <https://google.com|more>"}}]}]'
+          
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
 #         if: always()
