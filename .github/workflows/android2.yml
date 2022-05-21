@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
       
     steps:
-      - name: print
-        run: echo "$KEY_PASSWORD $KEY_ALIAS $KEY_STORE_PASSWORD"
     
       - name: Slack Notification Start
         uses: rtCamp/action-slack-notify@v2
@@ -36,7 +34,7 @@ jobs:
           cache: gradle
           
       - name: Decode Keystore
-        run: echo $KEY_STORE_BASE64 | base64 -d > keystore.jks
+        run: echo ${{ secrets.KEY_STORE_BASE64 }} | base64 -d > keystore.jks
   
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
