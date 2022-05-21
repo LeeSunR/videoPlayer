@@ -51,7 +51,7 @@ jobs:
         with:
           serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           packageName: kr.umaru.videoplayer
-          releaseFiles: app/build/outputs/bundle/release/*.aab
+          releaseFiles: app/build/outputs/bundle/DevRelease/*.aab
           track: internal
           inAppUpdatePriority: 2
           userFraction: 0.33
