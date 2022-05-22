@@ -27,8 +27,8 @@ jobs:
 
         - name: Show Response
         
-          run: echo "${{ steps.myRequest.outputs.response }}" > response.json
-            export CHAT_TS=grep -o '"ts":'' "[^"]*' response.json | grep -o '[^"]*$'
+          run: echo "${{ steps.myRequest.outputs.response }}" > response.json |
+            export CHAT_TS=grep -o '"ts":'' "[^"]*' response.json | grep -o '[^"]*$' |
             echo $CHAT_TS
           
 #       - name: Slack Notification Start
