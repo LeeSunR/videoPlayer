@@ -27,13 +27,8 @@ jobs:
 
         - name: Show Response
         - id: set_var
-          run: echo "${{ steps.myRequest.outputs.response }}" > response.json |
-            content=`cat response.json`
-            content="${content//'%'/'%25'}"
-            content="${content//$'\n'/'%0A'}"
-            content="${content//$'\r'/'%0D'}"
-            echo "::set-output name=packageJson::$content"
-            echo "${{fromJson(steps.set_var.outputs.packageJson).version}}"
+          run: echo "${{ steps.myRequest.outputs.response }}" > response.json
+            echo `rep -o '"ts":'' "[^"]*' response.json | grep -o '[^"]*$'`
           
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
