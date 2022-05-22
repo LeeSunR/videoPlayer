@@ -33,6 +33,7 @@ jobs:
           run: ts=`grep -o '"ts":'' "[^"]*' response.json | grep -o '[^"]*$'`
             echo "hello"
             echo "$ts"
+            echo `cat response.json`
           
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
