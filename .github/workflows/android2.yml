@@ -26,7 +26,10 @@ jobs:
             data: 'channel=C03FYEWR00P&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: AAAAndroid Test App","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"Build with Gradle... <https://google.com|more>"}}]}]'
 
         - name: Show Response
-          run: grep -oP '(?<="VpcId": ")[^"]*' "${{ steps.slackapi.outputs.response }}"
+        
+          run: echo "${{ steps.myRequest.outputs.response }}" > response.json
+            export CHAT_TS=grep -o '"ts":'' "[^"]*' response.json | grep -o '[^"]*$'
+            echo $CHAT_TS
           
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
