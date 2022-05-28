@@ -30,7 +30,7 @@ jobs:
             method: 'POST'
             bearerToken: ${{ secrets.SLACK_TOKEN }}
             data: ${{format('channel={0}&text=github action workflow starting..', env.SLACK_CHANNEL)}}
-#             data: 'ts={0}&channel={1}&attachments=[{"color":"#${2}","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: ${3}","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"${4}. <https://google.com|more>"}}]}]'
+#             data: 'ts={0}&channel={1}&attachments=[{"color":"#","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: ","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"test. <https://google.com|more>"}}]}]'
 
         - name: Show Response
           id: set_var
@@ -55,7 +55,7 @@ jobs:
             contentType: application/x-www-form-urlencoded
             method: 'POST'
             bearerToken: ${{ secrets.SLACK_TOKEN }}
-            data: ${{format('ts={0}&channel={1}&attachments=[{"color":"#{2}","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle:{3}","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"{4}. <https://google.com|more>"}}]}]', fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'github action workflow starting')}}
+            data: ${{format('ts={0}&channel={1}&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle:hhh","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"{4}. <https://google.com|more>"}}]}]', fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL)}}
  
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
