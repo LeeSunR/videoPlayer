@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      SLACK_TAMPLETE: 'ts={0}&channel={1}&attachments=[{{"color":"#{2}","blocks":[{{"type":"header","text":{{"type":"plain_text","text":"{3}","emoji":true}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"{4} <{5}|#{6}>"}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"{7}.. <{8}|more>"}}}}]}}]'
+      SLACK_TAMPLETE: 'ts={1}&channel={2}&attachments=[{{"color":"#{3}","blocks":[{{"type":"header","text":{{"type":"plain_text","text":"{4}","emoji":true}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"{5} <{6}|#{7}>"}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"{0}.. <{8}|more>"}}}}]}}]'
       SLACK_DISPLAY_TITLE: "ANDROID TEST APP"
       SLACK_CHANNEL: "C03FYEWR00P"
       SLACK_COLOR_SUCCESS: "0000a3"
@@ -45,15 +45,14 @@ jobs:
           echo "${{fromJson(steps.set_var.outputs.packageJson).ts}}"
 
       #JDK SETUP
-      
-      - name: START
-        uses: fjogeleit/http-request-action@v1
+
+      - uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://slack.com/api/chat.update'
           contentType: application/x-www-form-urlencoded
           method: 'POST'
           bearerToken: ${{ secrets.SLACK_TOKEN }}
-          data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', github.runner_name, 'https://naver.com')}}
+          data: ${{format(env.SLACK_TAMPLETE, 'init gradle', fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', 'https://naver.com')}}
 
       - uses: actions/checkout@v3
       - name: set up JDK 11
@@ -63,17 +62,16 @@ jobs:
           distribution: 'temurin'
           cache: gradle
           
-      - name: Decode Keystore
-        uses: fjogeleit/http-request-action@v1
+      - uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://slack.com/api/chat.update'
           contentType: application/x-www-form-urlencoded
           method: 'POST'
           bearerToken: ${{ secrets.SLACK_TOKEN }}
-          data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', github.runner_name, 'https://naver.com')}}
+          data: ${{format(env.SLACK_TAMPLETE, 'Decode Keystore', fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', 'https://naver.com')}}
 
-#       - name: Decode Keystore
-#         run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > app/keystore.jks
+      - name: Decode Keystore
+        run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > app/keystore.jks
   
 #       - name: Grant execute permission for gradlew
 #         run: chmod +x gradlew
