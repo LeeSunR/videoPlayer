@@ -70,7 +70,7 @@ jobs:
           contentType: application/x-www-form-urlencoded
           method: 'POST'
           bearerToken: ${{ secrets.SLACK_TOKEN }}
-          data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', env.RUNNER_NAME, 'https://naver.com')}}
+          data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', RUNNER_NAME, 'https://naver.com')}}
 
 #       - name: Decode Keystore
 #         run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > app/keystore.jks
