@@ -55,7 +55,7 @@ jobs:
             contentType: application/x-www-form-urlencoded
             method: 'POST'
             bearerToken: ${{ secrets.SLACK_TOKEN }}
-            data: ${{format('ts={0}&channel={1}&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle:hhh","emoji":true}}]}], fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL)}}
+            data: ${{format('ts={0}&channel={1}&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle:hhh","emoji":true}}]}]', fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL)}}
  
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
