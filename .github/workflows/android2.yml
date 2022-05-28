@@ -11,6 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
+      SLACK_TAMPLETE: 'ts={0}&channel={1}&attachments=[{{"color":"#{2}","blocks":[{{"type":"header","text":{{"type":"plain_text","text":"{3}","emoji":true}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"{4} <{5}|#{6}>"}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"{7}.. <{8}|more>"}}}}]}}]'
       SLACK_DISPLAY_TITLE: "ANDROID TEST APP"
       SLACK_CHANNEL: "C03FYEWR00P"
       SLACK_COLOR_SUCCESS: "0000a3"
@@ -55,7 +56,7 @@ jobs:
             contentType: application/x-www-form-urlencoded
             method: 'POST'
             bearerToken: ${{ secrets.SLACK_TOKEN }}
-            data: ${{format('ts={0}&channel={1}&attachments=[{{"color":"#0000a3","blocks":[{{"type":"header","text":{{"type":"plain_text","text":"ANDROID","emoji":true}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"test. <https://google.com|more>"}}}}]}}]', fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL)}}
+            data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', 'starting', 'https://naver.com')}}
  
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
