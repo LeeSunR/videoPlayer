@@ -30,7 +30,8 @@ jobs:
           run: echo '${{ steps.slackapi.outputs.response }}' > response.json
           
         - name: Show Response2
-          run: echo `grep -o '"ts":"[^"]*' response.json | grep -o '[^"]*$'`
+          run: echo `grep -o '"ts":"[^"]*' response.json | grep -o '[^"]*$'` | cut -d' ' -f1 >> out.txt
+              echo out.txt
           
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
