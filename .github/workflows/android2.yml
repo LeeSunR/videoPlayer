@@ -16,8 +16,6 @@ jobs:
       SLACK_COLOR_SUCCESS: "0000a3"
       SLACK_COLOR_FAIL: "00a300"
       SLACK_COLOR_WORKING: "a30000"
-      S3_URL: "https://xxxx.s3.ap-northeast-2.amazonaws.com"
-      S3_BROWSING: "https://xxxx.s3.ap-northeast-2.amazonaws.com/index.html#"
       
     steps:
         - name: test
@@ -57,7 +55,7 @@ jobs:
             contentType: application/x-www-form-urlencoded
             method: 'POST'
             bearerToken: ${{ secrets.SLACK_TOKEN }}
-            data: ${{format('ts={0}&channel={1}&attachments=[{"color":"#${2}","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle:${3}","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"${4}. <https://google.com|more>"}}]}]', fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE)}}
+            data: ${{format('ts={0}&channel={1}&attachments=[{"color":"#${2}","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle:${3}","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"${4}. <https://google.com|more>"}}]}]', fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'github action workflow starting')}}
  
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
