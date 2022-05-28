@@ -51,7 +51,7 @@ jobs:
             contentType: application/x-www-form-urlencoded
             method: 'POST'
             bearerToken: ${{ secrets.SLACK_TOKEN }}
-            data: ${{format('ts={0}&', ${{fromJson(steps.set_var.outputs.packageJson).ts}})}}
+            data: format('ts={0}', ${{fromJson(steps.set_var.outputs.packageJson).ts}})
       
 
 
