@@ -46,14 +46,14 @@ jobs:
 
       #JDK SETUP
       
-      - name: START NOTI
+      - name: START
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://slack.com/api/chat.update'
           contentType: application/x-www-form-urlencoded
           method: 'POST'
           bearerToken: ${{ secrets.SLACK_TOKEN }}
-          data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', 'set up JDK 11', 'https://naver.com')}}
+          data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', github.RUNNER_NAME, 'https://naver.com')}}
 
       - uses: actions/checkout@v3
       - name: set up JDK 11
@@ -63,14 +63,14 @@ jobs:
           distribution: 'temurin'
           cache: gradle
           
-      - name: START NOTI
+      - name: Decode Keystore
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://slack.com/api/chat.update'
           contentType: application/x-www-form-urlencoded
           method: 'POST'
           bearerToken: ${{ secrets.SLACK_TOKEN }}
-          data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', RUNNER_NAME, 'https://naver.com')}}
+          data: ${{format(env.SLACK_TAMPLETE, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL, env.SLACK_COLOR_WORKING, env.SLACK_DISPLAY_TITLE, 'pr name', 'https://naver.com','25', github.RUNNER_NAME, 'https://naver.com')}}
 
 #       - name: Decode Keystore
 #         run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > app/keystore.jks
