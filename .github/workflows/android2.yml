@@ -28,7 +28,7 @@ jobs:
 
         - name: Show Response
           run: |
-            echo '${{ steps.slackapi.outputs.response.ts }}' > response.json;
+            echo '${{ steps.slackapi.outputs.response.ts }}' > response.json
             content=`cat response.json`
             content="${content//'%'/'%25'}"
             content="${content//$'\n'/'%0A'}"
