@@ -29,7 +29,7 @@ jobs:
             contentType: application/x-www-form-urlencoded
             method: 'POST'
             bearerToken: ${{ secrets.SLACK_TOKEN }}
-            data: ${{format('channel={0}&text=github action workflow starting..', env.SLACK_CHANNEL)}}
+            data: ${{format('channel={0}&text=github action workflow starting."".', env.SLACK_CHANNEL)}}
 #             data: 'ts={0}&channel={1}&attachments=[{"color":"#","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: ","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"test. <https://google.com|more>"}}]}]'
 
         - name: Show Response
