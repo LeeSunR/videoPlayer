@@ -45,7 +45,7 @@ jobs:
           
         - run: echo "$data"
           env:
-            data: ${{ format('111') }}
+            data: ${{ format('111 {0}'), '1' }}
 #             data: ${{ format('{{ts={0}&channel=C03FYEWR00P&text=222}}', '${{fromJson(steps.set_var.outputs.packageJson).ts}})' }}
 
 #         - name: START STEP
