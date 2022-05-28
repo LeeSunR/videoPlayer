@@ -27,22 +27,25 @@ jobs:
 #             data: 'channel=C03FYEWR00P&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: AAAAndroid Test App","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"Build with Gradle... <https://google.com|more>"}}]}]'
 
         - name: Show Response
-          run: echo '${{ steps.slackapi.outputs.response }}' > response.json
+          run: echo "$TS"
+#           run: echo '${{ steps.slackapi.outputs.response }}' > response.json
+          env: 
+            TS: ${{fromJSON(steps.slackapi.outputs.response)}}.ts
           
-        - name: Show Response2
-          id: slack
-          run: echo `grep -o '"ts":"[^"]*' response.json | grep -o '[^"]*$'` | cut -d' ' -f1 > out.txt;
-              export SLACK_MSG_TIMESTAMP=`cat out.txt`
+#         - name: Show Response2
+#           id: slack
+#           run: echo `grep -o '"ts":"[^"]*' response.json | grep -o '[^"]*$'` | cut -d' ' -f1 > out.txt;
+#               export SLACK_MSG_TIMESTAMP=`cat out.txt`
           
           
-        - name: START STEP
-          uses: fjogeleit/http-request-action@v1
-          with:
-            url: 'https://slack.com/api/chat.update'
-            contentType: application/x-www-form-urlencoded
-            method: 'POST'
-            bearerToken: ${{ secrets.SLACK_TOKEN }}
-            data: 'channel=C03FYEWR00P&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: AAAAndroid Test App","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"Build with Gradle... <https://google.com|more>"}}]}]'
+#         - name: START STEP
+#           uses: fjogeleit/http-request-action@v1
+#           with:
+#             url: 'https://slack.com/api/chat.update'
+#             contentType: application/x-www-form-urlencoded
+#             method: 'POST'
+#             bearerToken: ${{ secrets.SLACK_TOKEN }}
+#             data: 'channel=C03FYEWR00P&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: AAAAndroid Test App","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"Build with Gradle... <https://google.com|more>"}}]}]'
 
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
