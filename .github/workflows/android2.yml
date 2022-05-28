@@ -42,20 +42,14 @@ jobs:
 #           id: slack
 #           run: echo `grep -o '"ts":"[^"]*' response.json | grep -o '[^"]*$'` | cut -d' ' -f1 > out.txt;
 #               export SLACK_MSG_TIMESTAMP=`cat out.txt`
-          
-        - run: echo "$data"
-          env:
-            data: ${{ format('111 {0}', 'hello') }}
-#             data: ${{ format('{{ts={0}&channel=C03FYEWR00P&text=222}}', '${{fromJson(steps.set_var.outputs.packageJson).ts}})' }}
-
-#         - name: START STEP
-#           uses: fjogeleit/http-request-action@v1
-#           with:
-#             url: 'https://slack.com/api/chat.update'
-#             contentType: application/x-www-form-urlencoded
-#             method: 'POST'
-#             bearerToken: ${{ secrets.SLACK_TOKEN }}
-#             data: ${{format('ts={0}&channel=C03FYEWR00P&text=222', ${{fromJson(steps.set_var.outputs.packageJson).ts}})}}
+        - name: START STEP
+          uses: fjogeleit/http-request-action@v1
+          with:
+            url: 'https://slack.com/api/chat.update'
+            contentType: application/x-www-form-urlencoded
+            method: 'POST'
+            bearerToken: ${{ secrets.SLACK_TOKEN }}
+            data: ${{format('ts={0}&channel=C03FYEWR00P&text=222', '${{fromJson(steps.set_var.outputs.packageJson).ts}}')}}
 
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
