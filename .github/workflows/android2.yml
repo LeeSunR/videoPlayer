@@ -48,14 +48,14 @@ jobs:
 #           id: slack
 #           run: echo `grep -o '"ts":"[^"]*' response.json | grep -o '[^"]*$'` | cut -d' ' -f1 > out.txt;
 #               export SLACK_MSG_TIMESTAMP=`cat out.txt`
-#         - name: START STEP
-#           uses: fjogeleit/http-request-action@v1
-#           with:
-#             url: 'https://slack.com/api/chat.update'
-#             contentType: application/x-www-form-urlencoded
-#             method: 'POST'
-#             bearerToken: ${{ secrets.SLACK_TOKEN }}
-#             data: ${{format('ts={0}&channel={1}&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle:hhh","emoji":true}}}, fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL)}}
+        - name: START STEP
+          uses: fjogeleit/http-request-action@v1
+          with:
+            url: 'https://slack.com/api/chat.update'
+            contentType: application/x-www-form-urlencoded
+            method: 'POST'
+            bearerToken: ${{ secrets.SLACK_TOKEN }}
+            data: ${{format('ts={0}&channel={1}&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle:hhh","emoji":true}}]}], fromJson(steps.set_var.outputs.packageJson).ts, env.SLACK_CHANNEL)}}
  
 #       - name: Slack Notification Start
 #         uses: rtCamp/action-slack-notify@v2
