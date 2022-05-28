@@ -43,7 +43,10 @@ jobs:
 #           run: echo `grep -o '"ts":"[^"]*' response.json | grep -o '[^"]*$'` | cut -d' ' -f1 > out.txt;
 #               export SLACK_MSG_TIMESTAMP=`cat out.txt`
           
-          
+        - run: echo "$data"
+          env:
+            data: format('ts={0}&channel=C03FYEWR00P&text=222', ${{fromJson(steps.set_var.outputs.packageJson).ts}})
+
         - name: START STEP
           uses: fjogeleit/http-request-action@v1
           with:
