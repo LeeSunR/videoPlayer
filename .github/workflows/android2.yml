@@ -51,7 +51,7 @@ jobs:
             contentType: application/x-www-form-urlencoded
             method: 'POST'
             bearerToken: ${{ secrets.SLACK_TOKEN }}
-            data: format('ts={0}&channel=C03FYEWR00P&attachments=[{"color":"#0000a3","blocks":[{"type":"header","text":{"type":"plain_text","text":":large_green_circle: AAAAndroid Test App","emoji":true}},{"type":"section","text":{"type":"mrkdwn","text":"`version-name:1.9.0` `version-code:200` `branch:test`\n[admin] 첨부파일 등록 <https://google.com|PR/#329>"}},{"type":"section","text":{"type":"mrkdwn","text":"Build with Gradle... <https://google.com|more>"}}]}]', ${{fromJson(steps.set_var.outputs.packageJson).ts}})
+            data: format('ts={0}&channel=C03FYEWR00P&text="dd2', ${{fromJson(steps.set_var.outputs.packageJson).ts}})
       
 
 
