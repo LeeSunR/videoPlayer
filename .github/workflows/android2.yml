@@ -60,7 +60,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-          cache: gradle
           
       - uses: fjogeleit/http-request-action@v1
         with:
