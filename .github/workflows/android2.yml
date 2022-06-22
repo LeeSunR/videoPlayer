@@ -3,27 +3,17 @@ name: Android CI
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'
+      variant:
+        description: 'Build Variant'
         required: true
-        default: 'warning' 
+        default: 'airklassTestRelease'
         type: choice
         options:
-        - info
-        - warning
-        - debug 
-      print_tags:
-        description: 'True to print to STDOUT'
-        required: true 
-        type: boolean 
-      tags:
-        description: 'Test scenario tags'
-        required: true 
-        type: string
-      environment:
-        description: 'Environment to run tests against'
-        type: environment
-        required: true 
+        - airklassTestRelease
+      patchNoteLink:
+        description: '패치노트 링크'
+        required: false 
+        type: string 
 
 jobs:
   build:
