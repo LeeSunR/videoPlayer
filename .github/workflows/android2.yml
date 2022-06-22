@@ -25,7 +25,8 @@ on:
 
 jobs:
   build:
-
+  
+    if: ${{contains(github.ref,'release')}}
     runs-on: ubuntu-latest
     env:
       SLACK_TAMPLETE: 'ts={1}&channel={2}&attachments=[{{"color":"#{3}","blocks":[{{"type":"header","text":{{"type":"plain_text","text":"{4}","emoji":true}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"{5} <{6}|#{7}>"}}}},{{"type":"section","text":{{"type":"mrkdwn","text":"{0}.. <{8}|more>"}}}}]}}]'
@@ -36,6 +37,9 @@ jobs:
       SLACK_COLOR_WORKING: "a30000"
       
     steps:
+      - name: bransh check
+        run: echo "${{ github.event}}"
+    
       - name: test
         run: echo "${{github.event}}"
 
