@@ -10,10 +10,18 @@ on:
         type: choice
         options:
         - airklassTestRelease
+      versionName:
+        description: '버전 코드'
+        required: true
+        type: string
+      versionCode:
+        description: '버전 이름'
+        required: true
+        type: string
       patchNoteLink:
         description: '패치노트 링크'
         required: false 
-        type: string 
+        type: string
 
 jobs:
   build:
